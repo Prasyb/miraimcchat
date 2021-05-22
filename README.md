@@ -34,7 +34,8 @@
 
 - 使用 `/mcchatop register <clientname>` 注册客户端，并保存 key
 
-- 使用 key 配置 MiraiMcChat-client
+### 4.使用 key 配置 MiraiMcChat-client
+- **[MiraiMcChat-client]()**
 
 ### 4.普通用户绑定账号
 - 使用 `/mcchat bind <minecraftname>` 绑定QQ号与 minecraft 用户名
