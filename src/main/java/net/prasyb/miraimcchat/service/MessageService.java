@@ -18,7 +18,7 @@ public class MessageService {
     public static void broadcastMessage(MessageEvent event) {
         ServerMessage serverMessage = new ServerMessage();
         serverMessage.setText(event.getMessage().contentToString());
-        serverMessage.setSenderQQName(event.getSender().getNick());
+        serverMessage.setSenderQQName(getMemberNameCardOrNick(event.getSender().getId(), getGroupId()));
         serverMessage.setSource("群");
         String mcName = DataService.searchUserid(event.getSender().getId());
         if (mcName != null) {
@@ -57,7 +57,7 @@ public class MessageService {
         if (group == null) {
             JavaPluginMain.INSTANCE.getLogger().warning("群组不存在，请检查群号");
         } else {
-            String toSend = String.format("[%s:%s/%s]:%s",sourceName,QQName,mcName,text);
+            String toSend = String.format("[%s]<%s/%s>:%s",sourceName,QQName,mcName,text);
             group.sendMessage(toSend);
         }
     }
