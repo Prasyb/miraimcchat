@@ -1,20 +1,40 @@
-# mirai_plugin_example
-![Github](https://img.shields.io/badge/Author-Nambers-blue) ![GitHub](https://img.shields.io/github/license/Nambers/mirai_kotlin_example) ![GitHub repo size](https://img.shields.io/github/repo-size/Nambers/mirai_kotlin_example) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Nambers/mirai_kotlin_example) ![GitHub last commit](https://img.shields.io/github/last-commit/Nambers/mirai_kotlin_example)
+# MiraiMcChat
+![Github](https://img.shields.io/badge/Author-Prasyb-blue)  
 
-a simple example of mirai using kotlin and java
+基于 [mirai-console](https://github.com/mamoe/mirai-console) 的插件，提供QQ群与Minecraft的聊天同步功能
 
-一个简易的mirai(mirai-console)框架应用 包含kotlin或java版(在 `/src/main/java` 或 `/src/main/kotlin`目录下)
+本插件为服务端，需配合Mod [MiraiMcChat-client]() 使用
 
-# 使用方法
+## 使用方法
 
-## 1. clone或下载本项目全部东西，可以不用下release
+### 1.构建 mirai-console 
 
-## 2.更改gradle依赖到最新版
+- **[Mirai 用户手册](https://github.com/mamoe/mirai/blob/dev/docs/UserManual.md)**
 
-依赖版本地址需自己按照[这里的最新版更改](https://bintray.com/him188moe/mirai/mirai-console/)或[这里](https://github.com/mamoe/mirai-console/blob/master/docs/ConfiguringProjects.md)，更改地址:build.gradle.kts下
+### 2.添加插件
 
-![更改地址](https://img-blog.csdnimg.cn/20210120155108568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwODMyOTYw,size_16,color_FFFFFF,t_70)
+将插件jar文件放入 mirai-console 根目录下 `/plugins/` 文件夹下并启动 mirai-console
 
-c++版(重构完成) <https://github.com/Nambers/MiraiCP>
+若需要在QQ聊天环境下执行插件相关指令，可选择添加 [chat-command](https://github.com/project-mirai/chat-command) 插件
 
-可直接用idea打开本文件夹来打开项目
+- **关于QQ聊天环境下执行指令的权限问题**
+  
+见 [Mirai Console 内置指令](https://github.com/mamoe/mirai-console/blob/master/docs/BuiltInCommands.md#mirai-console---builtin-commands) 的 PermissionCommand 条目
+
+本插件目前拥有 2 个权限节点：
+
+- 普通用户权限节点 `net.prasyb.miraimcchat:command.mcchat`
+- 管理员权限节点 `net.prasyb.miraimcchat:command.mcchatop`
+### 3.初始化设置
+- 使用 `/mcchatop setport <port>` 设定本地端口，并按需开放该端口或使用端口映射
+
+- 使用 `/mcchatop bindgroup <groupid>` 绑定QQ群号
+
+- 使用 `/mcchatop enable` 开启消息同步功能
+
+- 使用 `/mcchatop register <clientname>` 注册客户端，并保存 key
+
+- 使用 key 配置 MiraiMcChat-client
+
+### 4.普通用户绑定账号
+- 使用 `/mcchat bind <minecraftname>` 绑定QQ号与 minecraft 用户名
